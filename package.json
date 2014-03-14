@@ -1,0 +1,12 @@
+{
+  "name": "testProject",
+  "description": "this project is awesome",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "async": "*"
+  }
+}
