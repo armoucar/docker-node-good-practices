@@ -1,13 +1,16 @@
 FROM ubuntu
 MAINTAINER David Weinstein <david@bitjudo.com>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # install our dependencies and nodejs
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get -y install python-software-properties git build-essential
-RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get update
-RUN apt-get -y install nodejs
+RUN apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y curl
+RUN apt-get install -y gnupg2
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
